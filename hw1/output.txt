@@ -1,0 +1,23 @@
+(a)
+Step size: 5.2e-05
+f(w)=[ 0.03237462]
+(b)
+Prediction accuracy: 0.986054880792
+(c)
+Step size: 5.2e-05
+Prediction accuracy: 0.987404408457
+Step size: 0.00052
+Prediction accuracy: 0.986954565902
+Step size: 5.2e-06
+Prediction accuracy: 0.986504723347
+(d)
+Step size: 8.2e-05 Decay rate: 100 Decay value: 0.1
+Prediction accuracy: 0.986504723347
+Step size: 8.2e-05 Decay rate: 100 Decay value: 0.01
+Prediction accuracy: 0.968061178587
+Step size: 8.2e-05 Decay rate: 10 Decay value: 0.1
+Prediction accuracy: 0.985605038237
+Problem 4 (b)
+Step size: 6.5e-6
+f(w)=[ 0.08732331]
+Prediction accuracy: 0.985605038237

@@ -1,0 +1,115 @@
+\documentclass{amsart}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\setlist[1]{itemsep=3ex}
+\setlist[2]{itemsep=1ex}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\card}[1]{\overline{\overline{#1}}}
+\newcommand*{\Comb}[2]{{}^{#1}C_{#2}}%
+
+\begin{document}
+\title{Homework assignment 1}
+\author{Siyuan Yao 913199781}
+\maketitle
+
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\begin{enumerate}
+\item Problem 1
+\begin{enumerate}
+\item We know $w^T x=w_0\cdot 1+w_1 x_1+w_2x_2$.\\
+So suppose $w^Tx>0$ and $w_2 > 0$ then $w_0+w_1 x_1+w_2x_2>0$\\
+$w_2x_2>-w_1x_1-w_0$\\
+$\displaystyle x_2>-\frac{w_1}{w_2}x_1-\frac{w_0}{w_2}$\\
+If $w_2 < 0$, we have $\displaystyle x_2<-\frac{w_1}{w_2}x_1-\frac{w_0}{w_2}$\\
+Suppose $w^Tx<0$ and $w_2 > 0$ then $w_0+w_1 x_1+w_2x_2<0$\\
+Then we have $\displaystyle x_2<-\frac{w_1}{w_2}x_1-\frac{w_0}{w_2}$\\
+If $w_2 < 0$, we have $\displaystyle x_2>-\frac{w_1}{w_2}x_1-\frac{w_0}{w_2}$\\
+So the line is $\displaystyle x_2=-\frac{w_1}{w_2}x_1-\frac{w_0}{w_2}$,\\
+and slope $\displaystyle a=-\frac{w_1}{w_2}$, intercept $\displaystyle b=-\frac{w_0}{w_2}$\\
+
+\item $w=[1,2,3]^T$, then $x_2=-\dfrac{2}{3}x_1-\dfrac{1}{3}$\\
+\begin{tikzpicture}
+  \begin{axis}[grid=none,ymin=-2,ymax=2,xmax=2,xmin=-2,xticklabel=\empty,yticklabel=\empty,
+               minor tick num=1,axis lines = middle,xlabel=$x_1$,ylabel=$x_2$,label style =
+               {at={(ticklabel cs:1.1)}}]
+	\addplot[smooth,color=red]{-2/3*x-1/3};
+  \end{axis}
+\node[draw] at (5.5,4.5) {$h(x)=1$};
+\node[draw] at (1.5,1.5) {$h(x)=-1$};
+\end{tikzpicture}
+
+
+ $w=-[1,2,3]^T$, then $x_2=-\dfrac{2}{3}x_1-\dfrac{1}{3}$\\
+\begin{tikzpicture}
+  \begin{axis}[grid=none,ymin=-2,ymax=2,xmax=2,xmin=-2,xticklabel=\empty,yticklabel=\empty,
+               minor tick num=1,axis lines = middle,xlabel=$x_1$,ylabel=$x_2$,label style =
+               {at={(ticklabel cs:1.1)}}]
+	\addplot[smooth,color=red]{-2/3*x-1/3};
+	
+  \end{axis}
+\node[draw] at (5.5,4.5) {$h(x)=-1$};
+\node[draw] at (1.5,1.5) {$h(x)=1$};
+\end{tikzpicture}
+\end{enumerate}
+\item Problem 2
+\begin{enumerate}
+\item Since $f(x)=+1$, for $h\neq f$, we only consider $h(x)=-1$.\\
+$h(x)=-1$ has condition: $x=x_k$ and $k$ is even and $1\leq k\leq M+N$\\
+And $\displaystyle E_{off}(h,f)=\frac{1}{M}\sum^{M}_{m=1}[h(x_{N+m})\neq f(x_{N+m})]$\\
+$E_{off}(h,f) = \dfrac{M+1}{2M}$ if N odd, M odd\\
+$E_{off}(h,f) = \dfrac{1}{2}$ if N odd, M even\\
+$E_{off}(h,f) = \dfrac{1}{2}$ if N even, M even\\
+$E_{off}(h,f) = \dfrac{M-1}{2M}$ if N even, M odd\\
+\item $2^M$ possible $f$ can generate $\mathcal{D}$
+\item Since if $f\neq h$ can have $E_{off}(h,f)=\dfrac{k}{M}$, there are$\displaystyle\binom Mk$ possible $f$
+\item $E_f[E_{off}(h,f)]$\\
+$=\displaystyle\sum^{2^M}_{i=1} P(f_i)[E_{off}(h,f_i)]$\\
+$=\displaystyle\frac{1}{2^M}\sum^{2^M}_{i=1}[E_{off}(h,f_i)]$\\
+$=\displaystyle\frac{1}{2^M}\bigg[\binom M0\cdot \frac{0}{M}+\binom M1\cdot \frac{1}{M}+...+\binom M{M-1}\cdot \frac{M-1}{M}+\binom MM\cdot \frac{M}{M}\bigg]$\\
+$=\displaystyle\frac{1}{2^M}\cdot\frac{1}{M}\sum^M_{i=1}i\binom Mi$\\
+$=\displaystyle\frac{1}{2^M}\cdot\frac{1}{M}\sum^M_{i=1}i\cdot \frac{M!}{i!(M-i)!}$\\
+$=\displaystyle\frac{1}{2^M}\cdot(M-1)!\sum^M_{i=1}i\cdot \frac{1}{(i-1)!(M-i)!}$\\
+$=\displaystyle\frac{(M-1)!}{2^M}\bigg[\frac{1}{(M-1)!}+\frac{1}{2(M-2)!}+...+\frac{1}{(M-1)!}\bigg]$\\
+$=\displaystyle\frac{(M-1)!}{2^M}\cdot\frac{2^M}{2(M-1)!}\\=\frac{1}{2}$
+\item We know from (d) that $E_f[E_{off}(h,f)]=\displaystyle\frac{1}{M\cdot 2^M}\sum^M_{i=1}i\binom Mi$\\
+Since $h$ does not affect the off-training-set error:\\
+$E_f[E_{off}(A_1(\mathcal{D}),f)]=\displaystyle\frac{1}{M\cdot 2^M}\sum^M_{i=1}i\binom Mi=E_f[E_{off}(A_2(\mathcal{D}),f)]$\\
+\end{enumerate}
+\item Problem 3
+\begin{enumerate}
+\item Step size: 5.2e-05\\
+f(w)=0.03149046\\
+This step size will generate a weight list that has almost lowest f(w)
+\item Prediction accuracy: 0.986504723347
+The lower the f(w) I got, the higher accuracy the model has.
+\item Step size: 5.2e-05\\
+Prediction accuracy: 0.987404408457\\\\
+Step size: 0.00052\\
+Prediction accuracy: 0.986954565902\\\\
+Step size: 5.2e-06\\
+Prediction accuracy: 0.986504723347\\
+Because it is a randomized model, the accuracy could vary a litte. Same step-size could have higher or lower accuracy.
+\item Step size: 8.2e-05 Decay rate: 100 Decay value: 0.1\\
+Prediction accuracy: 0.986504723347\\\\
+Step size: 8.2e-05 Decay rate: 100 Decay value: 0.01\\
+Prediction accuracy: 0.968061178587\\\\
+Step size: 8.2e-05 Decay rate: 10 Decay value: 0.1\\
+Prediction accuracy: 0.985605038237
+\end{enumerate}
+\item Problem 4
+\begin{enumerate}
+\item In case $sign(w^Tx_n)\neq y_n$,\\ $y_iw^Tx_n < 0$ and $\max(0,1-y_iw^Tx_n)>1$.\\
+In case $sign(w^Tx_n)=y_n$,\\ $y_iw^Tx_n > 0$ and $0\leq \max(0,1-y_iw^Tx_n)\leq1$.\\
+So $e_n(w)$ is an upper bound for $[sign(w^Tx_n)\neq y_n]$
+\item Step size: 6.5e-6\\
+f(w)=0.08732331\\
+Prediction accuracy: 0.985605038237
+
+\end{enumerate}
+\end{enumerate}
+\end{document}
